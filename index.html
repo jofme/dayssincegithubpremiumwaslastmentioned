@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Days since LinkedIn last got mentioned</title>
+  <style>
+    :root{
+      --bg:#0c0c0f;
+      --card:#ffffff;
+      --ink:#0b0b0d;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--ink);
+      background: var(--bg);
+      display:grid;
+      place-items:center;
+      padding: 28px;
+      overflow:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-40vmax;
+      background:
+        radial-gradient(18px 18px at 20% 30%, rgba(255,255,255,.06) 0 35%, transparent 36%),
+        radial-gradient(14px 14px at 70% 55%, rgba(255,255,255,.05) 0 35%, transparent 36%),
+        radial-gradient(16px 16px at 55% 20%, rgba(255,255,255,.05) 0 35%, transparent 36%),
+        radial-gradient(12px 12px at 35% 70%, rgba(255,255,255,.05) 0 35%, transparent 36%),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 2px, transparent 2px 18px);
+      filter: blur(0.2px);
+      opacity:.55;
+      pointer-events:none;
+      transform: rotate(-6deg);
+    }
+
+    .card{
+      position:relative;
+      z-index: 1;
+      width: min(860px, 92vw);
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow:
+        0 18px 60px rgba(0,0,0,.45),
+        0 2px 0 rgba(0,0,0,.08);
+      padding: 28px 30px;
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      gap: 26px;
+    }
+
+    .calendar{
+      width: 160px;
+      height: 125px;
+      border: 10px solid #000;
+      border-radius: 10px;
+      position:relative;
+      flex: 0 0 auto;
+      background:#fff;
+      display:grid;
+      place-items:center;
+    }
+
+    .calendar::before{
+      content:"";
+      position:absolute;
+      left:-10px;
+      right:-10px;
+      top:-10px;
+      height: 40px;
+      background:#000;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .ring{
+      position:absolute;
+      top:-28px;
+      width: 14px;
+      height: 34px;
+      background:#fff;
+      border-radius: 7px;
+      box-shadow: inset 0 0 0 6px #000;
+    }
+    .ring.left{ left: 42px; }
+    .ring.right{ left: 102px; }
+
+    .count{
+      font-weight: 900;
+      font-size: 74px;
+      line-height: 1;
+      margin-top: 14px;
+    }
+
+    .text{
+      display:flex;
+      flex-direction:column;
+      gap: 4px;
+      line-height: 1.02;
+    }
+
+    .kicker{
+      font-weight: 900;
+      letter-spacing: .6px;
+      font-size: 22px;
+      text-transform: uppercase;
+    }
+
+    .brand{
+      font-weight: 900;
+      font-size: 34px;
+    }
+
+    .sub{
+      font-weight: 800;
+      font-size: 30px;
+    }
+
+    .shout{
+      font-weight: 900;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+
+    @media (max-width: 620px){
+      .row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap: 18px;
+      }
+      .calendar{ width: 150px; height: 118px; }
+      .brand{ font-size: 30px; }
+      .sub{ font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-label="Days since LinkedIn Premium mentioned counter">
+    <div class="row">
+      <div class="calendar" aria-hidden="true">
+        <span class="ring left"></span>
+        <span class="ring right"></span>
+        <div class="count">0</div>
+      </div>
+
+      <div class="text">
+        <div class="kicker">DAYS SINCE</div>
+        <div class="brand">LinkedIn</div>
+        <div class="sub">Premium</div>
+        <div class="shout">MENTIONED</div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
